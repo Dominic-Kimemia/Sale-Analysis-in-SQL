@@ -98,7 +98,7 @@ SELECT
 	DISTINCT product_line
 FROM sales;
 ```
-![Unique Cities Count](Assets/City_Branch.png)
+![Unique product lines](Assets/Unique%20product%20line.png)
 
 4. What is the most selling product line?
 ```SQL
@@ -115,9 +115,9 @@ GROUP BY product_line
 ORDER BY qty DESC;
 
 ```
-![Unique Cities Count](Assets/City_Branch.png)
+![most selling product line](Assets/most_selling_product_line.png)
 
-6. What is the total revenue by month?
+5. What is the total revenue by month?
 ```sql
 SELECT
 	month_name AS month,
@@ -126,9 +126,9 @@ FROM sales
 GROUP BY month_name 
 ORDER BY total_revenue;
 ```
-![Unique Cities Count](Assets/City_Branch.png)
+![Total revenue by month](Assets/total_revenue_by_month.png)
 
-8. What month had the largest COGS?
+6. What month had the largest COGS?
 ```sql
 SELECT
 	month_name AS month,
@@ -137,9 +137,9 @@ FROM sales
 GROUP BY month_name 
 ORDER BY cogs;
 ```
-![Unique Cities Count](Assets/City_Branch.png)
+![Month with largest COGS](Assets/month_largest_cogs.png)
 
-10. What product line had the largest revenue?
+7. What product line had the largest revenue?
 ```sql
 SELECT
 	product_line,
@@ -148,9 +148,9 @@ FROM sales
 GROUP BY product_line
 ORDER BY total_revenue DESC;
 ```
-![Unique Cities Count](Assets/City_Branch.png)
+![Product line with most revenue](Assets/product_line_largest_revenue.png)
 
-5. What is the city with the largest revenue?
+8. What is the city with the largest revenue?
 ```sql
 SELECT
 	branch,
@@ -161,9 +161,9 @@ GROUP BY city, branch
 ORDER BY total_revenue;
 
 ```
-![Unique Cities Count](Assets/City_Branch.png)
+![City with largest revenue](Assets/city_largest_revenue.png)
 
-7. What product line had the largest VAT?
+9. What product line had the largest VAT?
 ```sql
 SELECT
 	product_line,
@@ -172,9 +172,9 @@ FROM sales
 GROUP BY product_line
 ORDER BY avg_tax DESC;
 ```
-![Unique Cities Count](Assets/City_Branch.png)
+![Product line with largest VAT](Assets/product_line_largest_vat.png)
 
-9. Fetch each product line and add a column to those product line showing "Good", "Bad". Good if its greater than average sales
+10. Fetch each product line and add a column to those product line showing "Good", "Bad". Good if its greater than average sales
 ```sql
 -- Fetch each product line and add a column to those product 
 -- line showing "Good", "Bad". Good if its greater than average sales
@@ -192,7 +192,7 @@ SELECT
 FROM sales
 GROUP BY product_line;
 ```
-![Unique Cities Count](Assets/City_Branch.png)
+![Good, bad, average sales](ssets/good_bad_average.png)
 
 11. Which branch sold more products than average product sold?
 ```sql
@@ -203,9 +203,9 @@ FROM sales
 GROUP BY branch
 HAVING SUM(quantity) > (SELECT AVG(quantity) FROM sales);
 ```
-![Unique Cities Count](Assets/City_Branch.png)
+![Branch with more than average product sold](Assets/more_than_average_product_sold.png)
 
-13. What is the most common product line by gender?
+12. What is the most common product line by gender?
 ```sql
 -- What is the most common product line by gender
 SELECT
@@ -216,9 +216,9 @@ FROM sales
 GROUP BY gender, product_line
 ORDER BY total_cnt DESC;
 ```
-![Unique Cities Count](Assets/City_Branch.png)
 
-15. What is the average rating of each product line?
+
+13. What is the average rating of each product line?
 ```sql
 -- What is the average rating of each product line
 SELECT
@@ -228,7 +228,7 @@ FROM sales
 GROUP BY product_line
 ORDER BY avg_rating DESC;
 ```
-![Unique Cities Count](Assets/City_Branch.png)
+![Average rating per product line](Assets/average_rating_per_line%20-%20Copy.png)
 
 ### Sales
 
@@ -245,9 +245,9 @@ ORDER BY total_sales DESC;
 -- Evenings experience most sales, the stores are 
 -- filled during the evening hours
 ```
-![Unique Cities Count](Assets/City_Branch.png)
+![Number of sales made in each time of the day per weekday](Assets/sales_by_time.png)
 
-3. Which of the customer types brings the most revenue?
+2. Which of the customer types brings the most revenue?
 ```sql
 -- Which of the customer types brings the most revenue?
 SELECT
@@ -257,9 +257,9 @@ FROM sales
 GROUP BY customer_type
 ORDER BY total_revenue;
 ```
-![Unique Cities Count](Assets/City_Branch.png)
+![customer type with most revenue](Assets/revenue_by_customer_type.png)
 
-5. Which city has the largest tax percent/ VAT (**Value Added Tax**)?
+3. Which city has the largest tax percent/ VAT (**Value Added Tax**)?
 ```sql
 -- Which city has the largest tax/VAT percent?
 SELECT
@@ -269,9 +269,9 @@ FROM sales
 GROUP BY city 
 ORDER BY avg_tax_pct DESC;
 ```
-![Unique Cities Count](Assets/City_Branch.png)
+![City with larhest VAT](Assets/city_most_vat.png)
 
-7. Which customer type pays the most in VAT?
+4. Which customer type pays the most in VAT?
 ```sql
 -- Which customer type pays the most in VAT?
 SELECT
@@ -281,7 +281,8 @@ FROM sales
 GROUP BY customer_type
 ORDER BY total_tax;
 ```
-![Unique Cities Count](Assets/City_Branch.png)
+![customer type that pays the most in VAT](Assets/Customers_most_vat.png)
+
 ### Customer
 
 1. How many unique customer types does the data have?
@@ -290,18 +291,18 @@ SELECT
 	DISTINCT customer_type
 FROM sales;
 ```
-![Unique Cities Count](Assets/City_Branch.png)
+![Customer types](Assets/customer_type.png)
 
-3. How many unique payment methods does the data have?
+2. How many unique payment methods does the data have?
 ```sql
 -- How many unique payment methods does the data have?
 SELECT
 	DISTINCT payment_method
 FROM sales;
 ```
-![Unique Cities Count](Assets/City_Branch.png)
 
-5. What is the most common customer type?
+
+3. What is the most common customer type?
 ```sql
 -- What is the most common customer type?
 SELECT
@@ -311,8 +312,9 @@ FROM sales
 GROUP BY customer_type
 ORDER BY count DESC;
 ```
-![Unique Cities Count](Assets/City_Branch.png)
-7. Which customer type buys the most?
+![Most common customer type](Assets/common_customer_type.png)
+
+4. Which customer type buys the most?
 ```
 -- Which customer type buys the most?
 SELECT
@@ -321,9 +323,9 @@ SELECT
 FROM sales
 GROUP BY customer_type;
 ```
-![Unique Cities Count](Assets/City_Branch.png)
+![Customer type who buys the most](Assets/customer_type_buys_most.png)
 
-8. What is the gender of most of the customers?
+5. What is the gender of most of the customers?
 ```sql
 -- What is the gender of most of the customers?
 SELECT
@@ -333,9 +335,8 @@ FROM sales
 GROUP BY gender
 ORDER BY gender_cnt DESC;
 ```
-![Unique Cities Count](Assets/City_Branch.png)
 
-10. What is the gender distribution per branch?
+6. What is the gender distribution per branch?
 ```sql
 -- What is the gender distribution per branch?
 SELECT
@@ -349,9 +350,9 @@ ORDER BY gender_cnt DESC;
 -- an effect of the sales per branch and other factors.
 
 ```
-![Unique Cities Count](Assets/City_Branch.png)
+![Gender distribution per branch](Assets/gender_distribution_per_branch.png)
 
-12. Which time of the day do customers give most ratings?
+7. Which time of the day do customers give most ratings?
 ```sql
 -- Which time of the day do customers give most ratings?
 SELECT
@@ -363,8 +364,9 @@ ORDER BY avg_rating DESC;
 -- Looks like time of the day does not really affect the rating, its
 -- more or less the same rating each time of the day.
 ```
-![Unique Cities Count](Assets/City_Branch.png)
-14. Which time of the day do customers give most ratings per branch?
+![Time of the day with most ratings](Assets/sales_by_time.png)
+
+8. Which time of the day do customers give most ratings per branch?
 ```sql
 
 -- Which time of the day do customers give most ratings per branch?
@@ -378,7 +380,7 @@ ORDER BY avg_rating DESC;
 -- Branch A and C are doing well in ratings, branch B needs to do a 
 -- little more to get better ratings.
 ```
-15. Which day fo the week has the best avg ratings?
+9. Which day fo the week has the best avg ratings?
 ```sql
 -- Which day of the week has the best average ratings per branch?
 SELECT 
@@ -390,6 +392,7 @@ GROUP BY day_name
 ORDER BY total_sales DESC;
 
 ```
+![Day of the week with most avg ratings](Assets/day_with_most_ratings.png)
 
 ## Revenue And Profit Calculations
 
