@@ -92,18 +92,143 @@ FROM sales;
 ![Unique Cities Count](Assets/City_Branch.png)
 ### Product
 
-1. How many unique product lines does the data have?
-2. What is the most common payment method?
-3. What is the most selling product line?
-4. What is the total revenue by month?
-5. What month had the largest COGS?
-6. What product line had the largest revenue?
+3. How many unique product lines does the data have?
+```SQL
+SELECT
+	DISTINCT product_line
+FROM sales;
+```
+![Unique Cities Count](Assets/City_Branch.png)
+
+4. What is the most selling product line?
+```SQL
+SELECT
+	SUM(quantity) as qty,
+    product_line
+FROM sales
+GROUP BY product_line
+ORDER BY qty DESC;SELECT
+	SUM(quantity) as qty,
+    product_line
+FROM sales
+GROUP BY product_line
+ORDER BY qty DESC;
+
+```
+![Unique Cities Count](Assets/City_Branch.png)
+
+6. What is the total revenue by month?
+```sql
+SELECT
+	month_name AS month,
+	SUM(total) AS total_revenue
+FROM sales
+GROUP BY month_name 
+ORDER BY total_revenue;
+```
+![Unique Cities Count](Assets/City_Branch.png)
+
+8. What month had the largest COGS?
+```sql
+SELECT
+	month_name AS month,
+	SUM(cogs) AS cogs
+FROM sales
+GROUP BY month_name 
+ORDER BY cogs;
+```
+![Unique Cities Count](Assets/City_Branch.png)
+
+10. What product line had the largest revenue?
+```sql
+SELECT
+	product_line,
+	SUM(total) as total_revenue
+FROM sales
+GROUP BY product_line
+ORDER BY total_revenue DESC;
+```
+![Unique Cities Count](Assets/City_Branch.png)
+
 5. What is the city with the largest revenue?
-6. What product line had the largest VAT?
-7. Fetch each product line and add a column to those product line showing "Good", "Bad". Good if its greater than average sales
-8. Which branch sold more products than average product sold?
-9. What is the most common product line by gender?
-12. What is the average rating of each product line?
+```sql
+SELECT
+	branch,
+	city,
+	SUM(total) AS total_revenue
+FROM sales
+GROUP BY city, branch 
+ORDER BY total_revenue;
+
+```
+![Unique Cities Count](Assets/City_Branch.png)
+
+7. What product line had the largest VAT?
+```sql
+SELECT
+	product_line,
+	AVG(tax_pct) as avg_tax
+FROM sales
+GROUP BY product_line
+ORDER BY avg_tax DESC;
+```
+![Unique Cities Count](Assets/City_Branch.png)
+
+9. Fetch each product line and add a column to those product line showing "Good", "Bad". Good if its greater than average sales
+```sql
+-- Fetch each product line and add a column to those product 
+-- line showing "Good", "Bad". Good if its greater than average sales
+
+SELECT 
+	AVG(quantity) AS avg_qnty
+FROM sales;
+
+SELECT
+	product_line,
+	CASE
+		WHEN AVG(quantity) > 6 THEN "Good"
+        ELSE "Bad"
+    END AS remark
+FROM sales
+GROUP BY product_line;
+```
+![Unique Cities Count](Assets/City_Branch.png)
+
+11. Which branch sold more products than average product sold?
+```sql
+SELECT 
+	branch, 
+    SUM(quantity) AS qnty
+FROM sales
+GROUP BY branch
+HAVING SUM(quantity) > (SELECT AVG(quantity) FROM sales);
+```
+![Unique Cities Count](Assets/City_Branch.png)
+
+13. What is the most common product line by gender?
+```sql
+-- What is the most common product line by gender
+SELECT
+	gender,
+    product_line,
+    COUNT(gender) AS total_cnt
+FROM sales
+GROUP BY gender, product_line
+ORDER BY total_cnt DESC;
+```
+![Unique Cities Count](Assets/City_Branch.png)
+
+15. What is the average rating of each product line?
+```sql
+-- What is the average rating of each product line
+SELECT
+	ROUND(AVG(rating), 2) as avg_rating,
+    product_line
+FROM sales
+GROUP BY product_line
+ORDER BY avg_rating DESC;
+```
+![Unique Cities Count](Assets/City_Branch.png)
 
 ### Sales
 
