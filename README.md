@@ -233,23 +233,163 @@ ORDER BY avg_rating DESC;
 ### Sales
 
 1. Number of sales made in each time of the day per weekday
-2. Which of the customer types brings the most revenue?
-3. Which city has the largest tax percent/ VAT (**Value Added Tax**)?
-4. Which customer type pays the most in VAT?
+```sql
+-- Number of sales made in each time of the day per weekday 
+SELECT
+	time_of_day,
+	COUNT(*) AS total_sales
+FROM sales
+WHERE day_name = "Sunday"
+GROUP BY time_of_day 
+ORDER BY total_sales DESC;
+-- Evenings experience most sales, the stores are 
+-- filled during the evening hours
+```
+![Unique Cities Count](Assets/City_Branch.png)
 
+3. Which of the customer types brings the most revenue?
+```sql
+-- Which of the customer types brings the most revenue?
+SELECT
+	customer_type,
+	SUM(total) AS total_revenue
+FROM sales
+GROUP BY customer_type
+ORDER BY total_revenue;
+```
+![Unique Cities Count](Assets/City_Branch.png)
+
+5. Which city has the largest tax percent/ VAT (**Value Added Tax**)?
+```sql
+-- Which city has the largest tax/VAT percent?
+SELECT
+	city,
+    ROUND(AVG(tax_pct), 2) AS avg_tax_pct
+FROM sales
+GROUP BY city 
+ORDER BY avg_tax_pct DESC;
+```
+![Unique Cities Count](Assets/City_Branch.png)
+
+7. Which customer type pays the most in VAT?
+```sql
+-- Which customer type pays the most in VAT?
+SELECT
+	customer_type,
+	AVG(tax_pct) AS total_tax
+FROM sales
+GROUP BY customer_type
+ORDER BY total_tax;
+```
+![Unique Cities Count](Assets/City_Branch.png)
 ### Customer
 
 1. How many unique customer types does the data have?
-2. How many unique payment methods does the data have?
-3. What is the most common customer type?
-4. Which customer type buys the most?
-5. What is the gender of most of the customers?
-6. What is the gender distribution per branch?
-7. Which time of the day do customers give most ratings?
-8. Which time of the day do customers give most ratings per branch?
-9. Which day fo the week has the best avg ratings?
-10. Which day of the week has the best average ratings per branch?
+```sql
+SELECT
+	DISTINCT customer_type
+FROM sales;
+```
+![Unique Cities Count](Assets/City_Branch.png)
 
+3. How many unique payment methods does the data have?
+```sql
+-- How many unique payment methods does the data have?
+SELECT
+	DISTINCT payment_method
+FROM sales;
+```
+![Unique Cities Count](Assets/City_Branch.png)
+
+5. What is the most common customer type?
+```sql
+-- What is the most common customer type?
+SELECT
+	customer_type,
+	count(*) as count
+FROM sales
+GROUP BY customer_type
+ORDER BY count DESC;
+```
+![Unique Cities Count](Assets/City_Branch.png)
+7. Which customer type buys the most?
+```
+-- Which customer type buys the most?
+SELECT
+	customer_type,
+    COUNT(*)
+FROM sales
+GROUP BY customer_type;
+```
+![Unique Cities Count](Assets/City_Branch.png)
+
+8. What is the gender of most of the customers?
+```sql
+-- What is the gender of most of the customers?
+SELECT
+	gender,
+	COUNT(*) as gender_cnt
+FROM sales
+GROUP BY gender
+ORDER BY gender_cnt DESC;
+```
+![Unique Cities Count](Assets/City_Branch.png)
+
+10. What is the gender distribution per branch?
+```sql
+-- What is the gender distribution per branch?
+SELECT
+	gender,
+	COUNT(*) as gender_cnt
+FROM sales
+WHERE branch = "C"
+GROUP BY gender
+ORDER BY gender_cnt DESC;
+-- Gender per branch is more or less the same hence, I don't think has
+-- an effect of the sales per branch and other factors.
+
+```
+![Unique Cities Count](Assets/City_Branch.png)
+
+12. Which time of the day do customers give most ratings?
+```sql
+-- Which time of the day do customers give most ratings?
+SELECT
+	time_of_day,
+	AVG(rating) AS avg_rating
+FROM sales
+GROUP BY time_of_day
+ORDER BY avg_rating DESC;
+-- Looks like time of the day does not really affect the rating, its
+-- more or less the same rating each time of the day.
+```
+![Unique Cities Count](Assets/City_Branch.png)
+14. Which time of the day do customers give most ratings per branch?
+```sql
+
+-- Which time of the day do customers give most ratings per branch?
+SELECT
+	time_of_day,
+	AVG(rating) AS avg_rating
+FROM sales
+WHERE branch = "A"
+GROUP BY time_of_day
+ORDER BY avg_rating DESC;
+-- Branch A and C are doing well in ratings, branch B needs to do a 
+-- little more to get better ratings.
+```
+15. Which day fo the week has the best avg ratings?
+```sql
+-- Which day of the week has the best average ratings per branch?
+SELECT 
+	day_name,
+	COUNT(day_name) total_sales
+FROM sales
+WHERE branch = "C"
+GROUP BY day_name
+ORDER BY total_sales DESC;
+
+```
 
 ## Revenue And Profit Calculations
 
