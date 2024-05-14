@@ -337,6 +337,7 @@ ORDER BY gender_cnt DESC;
 ```
 
 6. What is the gender distribution per branch?
+   
 ```sql
 -- What is the gender distribution per branch?
 SELECT
@@ -348,7 +349,6 @@ GROUP BY gender
 ORDER BY gender_cnt DESC;
 -- Gender per branch is more or less the same hence, I don't think has
 -- an effect of the sales per branch and other factors.
-
 ```
 ![Gender distribution per branch](Assets/gender_distribution_per_branch.png)
 
