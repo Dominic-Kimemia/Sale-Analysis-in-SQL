@@ -73,8 +73,23 @@ The data contains 17 columns and 1000 rows:
 ### Generic Question
 
 1. How many unique cities does the data have?
-2. In which city is each branch?
 
+```SQL
+-- How many unique cities does the data have?
+SELECT 
+	DISTINCT city
+FROM sales;
+```
+![Unique Cities Count](Assets/Images/1_row_count_check.png)
+
+2. In which city is each branch?
+```SQL
+SELECT 
+	DISTINCT city,
+    branch
+FROM sales;
+```
+![Unique Cities Count](Assets/Images/1_row_count_check.png)
 ### Product
 
 1. How many unique product lines does the data have?
