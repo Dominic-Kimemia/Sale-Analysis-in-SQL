@@ -80,7 +80,7 @@ SELECT
 	DISTINCT city
 FROM sales;
 ```
-![Unique Cities Count](Assets/Images/1_row_count_check.png)
+![Unique Cities Count](Assets/City_Branch.png)
 
 2. In which city is each branch?
 ```SQL
@@ -89,7 +89,7 @@ SELECT
     branch
 FROM sales;
 ```
-![Unique Cities Count](Assets/Images/1_row_count_check.png)
+![Unique Cities Count](Assets/City_Branch.png)
 ### Product
 
 1. How many unique product lines does the data have?
